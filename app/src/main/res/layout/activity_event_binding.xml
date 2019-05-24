@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".EventBindingActivity">
+
+    <data>
+        <variable name="handler"
+                  type="com.iamsdt.playingwithdatabinding.Handler"/>
+
+        <variable name="name" type="java.lang.String"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <Button
+                android:text="Method Ref"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button2"
+                android:onClick="@{handler::clickMe2}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintBottom_toTopOf="@+id/button3" app:layout_constraintTop_toTopOf="parent"/>
+        <Button
+                android:text="Listener"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button3"
+                android:onClick="@{(view) -> handler.clickMe3(view)}"
+                app:layout_constraintTop_toBottomOf="@+id/button2" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintBottom_toTopOf="@+id/button4"/>
+        <Button
+                android:text="Listener 2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{()-> handler.clickMe4()}"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/button4" app:layout_constraintTop_toBottomOf="@+id/button3"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.519"/>
+        <Button
+                android:text="Button"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/button"
+                android:onClick="@{() -> handler.clickMe5(name)}"
+                app:layout_constraintTop_toTopOf="parent" android:layout_marginEnd="32dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="32dp"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="32dp"
+                android:layout_marginBottom="32dp" app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_bias="1.0"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
