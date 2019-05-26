@@ -1,13 +1,10 @@
 package com.iamsdt.playingwithdatabinding
 
 import android.graphics.drawable.Drawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
-import androidx.constraintlayout.widget.Placeholder
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.BindingAdapter
-import androidx.databinding.BindingMethod
-import androidx.databinding.BindingMethods
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.iamsdt.playingwithdatabinding.databinding.ActivityBindingAdapterBinding
@@ -28,6 +25,8 @@ class BindingAdapterActivity : AppCompatActivity() {
             )
     }
 
+
+    //this is the java way
     companion object {
         @BindingAdapter("loadImage")
         @JvmStatic
@@ -37,6 +36,7 @@ class BindingAdapterActivity : AppCompatActivity() {
     }
 }
 
+//this is also java way
 @BindingAdapter(value = ["loadImage", "placeHolder"], requireAll = true)
 fun loadImage(view: ImageView, url: String?, placeholder: Drawable) {
     Timber.i("######## $url############")
@@ -48,6 +48,21 @@ fun loadImage(view: ImageView, url: String?, placeholder: Drawable) {
             .into(view)
     } else {
         view.setImageDrawable(placeholder)
+    }
+}
+
+//make the upper method in kotlin way
+@BindingAdapter(value = ["loadImage", "placeHolder"], requireAll = true)
+fun ImageView.loadImage2(url: String?, placeholder: Drawable) {
+    Timber.i("######## $url############")
+    if (url != null && url.isNotEmpty()) {
+        Glide.with(context)
+            .load(url)
+            .placeholder(placeholder)
+            .fitCenter()
+            .into(this)
+    } else {
+        setImageDrawable(placeholder)
     }
 }
 

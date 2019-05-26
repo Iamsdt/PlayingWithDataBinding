@@ -1,7 +1,6 @@
 package com.iamsdt.playingwithdatabinding
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -9,15 +8,7 @@ import com.iamsdt.playingwithdatabinding.databinding.ItemBinding
 
 class MyAdapter(private val list: List<MovieList>) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val binding = DataBindingUtil.inflate<ItemBinding>(
-            LayoutInflater.from(parent.context),
-            R.layout.item,
-            parent, false
-        )
-
-        return MyViewHolder(binding.root)
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder = MyViewHolder.from(parent)
 
     override fun getItemCount(): Int = list.size
 
@@ -26,13 +17,27 @@ class MyAdapter(private val list: List<MovieList>) : RecyclerView.Adapter<MyAdap
     }
 
 
-    inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
-        private var binding = DataBindingUtil.bind<ItemBinding>(view)
-
+    class MyViewHolder private constructor(private val binding: ItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: MovieList) {
-            binding?.model = movie
+            binding.model = movie
+            //it will make faster to process views
+            binding.executePendingBindings()
         }
+
+        companion object {
+
+            fun from(parent: ViewGroup): MyViewHolder {
+
+                val binding = DataBindingUtil.inflate<ItemBinding>(
+                    LayoutInflater.from(parent.context),
+                    R.layout.item,
+                    parent, false
+                )
+
+                return MyViewHolder(binding)
+            }
+        }
+
     }
 
 }
