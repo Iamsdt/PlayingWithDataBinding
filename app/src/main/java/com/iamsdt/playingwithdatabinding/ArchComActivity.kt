@@ -11,6 +11,19 @@ class ArchComActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityArchComBinding
 
+    /*
+    IN this class edit text is implemented as
+    one way databinding
+    Used: text watcher
+    to implement text watcher
+     their is two way
+     From xml: use android:afterTextChanged
+     Note: Compile will show a warning, but ignore that
+     From code:
+     add text change listener
+
+     And make a field observable
+     */
 
     val vm: MyViewModel by lazy {
         ViewModelProviders.of(this).get(MyViewModel::class.java)

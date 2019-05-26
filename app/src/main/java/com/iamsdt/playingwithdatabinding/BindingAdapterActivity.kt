@@ -27,6 +27,14 @@ class BindingAdapterActivity : AppCompatActivity() {
                 , id = 0, year = ""
             )
     }
+
+    companion object {
+        @BindingAdapter("loadImage")
+        @JvmStatic
+        fun test(view: ImageView, url: String?) {
+            //do something
+        }
+    }
 }
 
 @BindingAdapter(value = ["loadImage", "placeHolder"], requireAll = true)
