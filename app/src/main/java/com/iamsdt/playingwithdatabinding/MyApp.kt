@@ -9,9 +9,8 @@ class MyApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
+        Timber.plant(Timber.DebugTree())
         UCEHandler.Builder(this).build()
-        Timber.plant(DebugLogTree())
     }
 
 }
