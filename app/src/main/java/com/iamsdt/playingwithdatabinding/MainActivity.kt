@@ -15,6 +15,6 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         val model = MyModel(listOf("", "Trafder", "", "", ""))
         binding.model = model
-        nextActivity<ArchComActivity>()
+        nextActivity<ObserableActivity>()
     }
 }

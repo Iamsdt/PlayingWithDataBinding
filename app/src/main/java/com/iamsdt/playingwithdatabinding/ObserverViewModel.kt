@@ -1,0 +1,4 @@
+package com.iamsdt.playingwithdatabinding
+
+import androidx.databinding.BaseObservable
+import androidx.lifecycle.ViewModel
