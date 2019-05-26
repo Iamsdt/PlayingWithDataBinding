@@ -18,6 +18,7 @@
                 android:layout_height="0dp" tools:srcCompat="@tools:sample/avatars"
                 android:id="@+id/imageView"
                 app:loadImage="@{url.name}"
+                app:placeHolder = "@{@drawable/ic_account_box_pink_500_24dp}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
