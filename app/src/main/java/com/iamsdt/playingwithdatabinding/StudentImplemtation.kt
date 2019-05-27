@@ -14,7 +14,7 @@ class StudentImplemtation(var _title: String) : Observable {
         set(value) {
             _title = value
             //use in xml
-            registry.notifyChange(this, BR.title)
+            //registry.notifyChange(this, BR.title)
         }
 
     override fun removeOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
